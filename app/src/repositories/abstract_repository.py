@@ -18,14 +18,12 @@
 
 # ===========================================================================================
 
-from abc import ABCMeta
+from abc import ABC, abstractclassmethod, abstractmethod
 
 # Main class ================================================================================
-class AbstractRepository(metaclass=ABCMeta):
-    def __init__(self) -> None:
-        """"""
+class AbstractRepository(ABC):
 
-
+    @abstractmethod
     def get_list(self, *args, **kwargs):
         """
             Lấy ra danh sách các đối tượng

@@ -1,13 +1,9 @@
-# from app.src.repositories.factory_repository import (
-#     FactoryRepository,
-#     RepositoryName
-# )
 import sys
 [sys.path.append(i) for i in ['.', '..']]
 
-from app.src.repositories.factory_repository import FactoryRepository, RepositoryName
+import uvicorn
 
-factory = FactoryRepository()
-
-example = factory.get_repository(RepositoryName.EXAMPLE_REPOSITORY.value)
-example.get_list()
+if __name__ == "__main__":
+    config = uvicorn.Config("src.applications.app:app_controller", port=5000, log_level="info", reload=True)
+    server = uvicorn.Server(config)
+    server.run()

@@ -25,7 +25,15 @@ from app.src.repositories.example_repository import ExampleRepository
 """
 
 class RepositoryName(Enum):
+    """
+        Định nghĩa tên các bảng trong Database
+    """
     EXAMPLE_REPOSITORY = "example"
+
+
+class RepositoryManager():
+    def __init__(self, example) -> None:
+        self.example = example
 
 # Main class ================================================================================
 class FactoryRepository():
@@ -42,7 +50,21 @@ class FactoryRepository():
         """
         # Kiểm tra tên của repository và trả về kết quả tương ứng, nếu không tồn tại
         # repository đó thì trả về lỗi
-        if repository_name == RepositoryName.EXAMPLE_REPOSITORY.value:
+        if repository_name == RepositoryName.EXAMPLE_REPOSITORY:
             return ExampleRepository()
         else:
             raise NotFoundException(message=f"{repository_name} repoistory is't existed!")
+
+    
+    def get_repository_manager(self):
+        """
+            Hàm này thực hiện lấy ra object chứa tất cả các repository
+            Đầu vào: Không có
+            Đầu ra:
+                - Trả về object chứa tất cả các repository
+        """
+        _repository_manager = RepositoryManager(
+            example=ExampleRepository()
+        )
+
+        return _repository_manager
